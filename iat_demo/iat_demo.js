@@ -126,10 +126,26 @@ var key_L = 'f'
 var key_R = 'j'
 var iat_temp = {
     // Pairs A & Pairs B should be compatible
-    attribA: { label: '好', items: ['聪明', '成功', '高尚', '优秀', '幸福'] },
-    attribB: { label: '坏', items: ['愚蠢', '失败', '卑鄙', '差劲', '悲惨'] },
-    targetA: { label: '自我', items: ['我', '我的', '自己', '俺', '咱'] },
-    targetB: { label: '他人', items: ['他', '他的', '他们', '她', '它'] },
+    attribA: {
+        label: '直视观众',
+        items: [
+            '<img src="iat_demo/images/img_direct_1.png" style="width:600px;height:400px"/>',
+            '<img src="iat_demo/images/img_direct_2.png" style="width:600px;height:400px"/>',
+            '<img src="iat_demo/images/img_direct_3.png" style="width:600px;height:400px"/>',
+            '<img src="iat_demo/images/img_direct_4.png" style="width:600px;height:400px"/>',
+            '<img src="iat_demo/images/img_direct_5.png" style="width:600px;height:400px"/>',
+            '<img src="iat_demo/images/img_direct_6.png" style="width:600px;height:400px"/>'] },
+    attribB: {
+        label:'注视产品',
+        items:[
+            '<img src="iat_demo/images/img_averted_1.png" style="width:600px;height:400px"/>',
+            '<img src="iat_demo/images/img_averted_2.png" style="width:600px;height:400px"/>',
+            '<img src="iat_demo/images/img_averted_3.png" style="width:600px;height:400px"/>',
+            '<img src="iat_demo/images/img_averted_4.png" style="width:600px;height:400px"/>',
+            '<img src="iat_demo/images/img_averted_5.png" style="width:600px;height:400px"/>',
+            '<img src="iat_demo/images/img_averted_6.png" style="width:600px;height:400px"/>'] },
+    targetA: { label: '感性', items: ['感官', '情绪', '直觉', '感觉', '情感', '感受'] },
+    targetB: { label: '理性', items: ['理智', '判断', '推理', '思考', '分析', '思维'] },
 }
 var attrib_color = 'white'
 var target_color = 'rgb(150, 250, 100)'
@@ -191,14 +207,14 @@ var IAT_instr0 = {
     data: { version_attrib: version.attrib, version_target: version.target },
     stimulus: `
     <h3>词语分类任务</h3>
-    <p>在接下来的任务中，你需要对一系列词语进行分类。<br/>
-    请先熟悉这些词语，这有利于你完成接下来的任务。</p>
+    <p>在接下来的任务中，你需要对一系列图片或词语进行分类。<br/>
+    请先熟悉这些图片或词语，这有利于你完成接下来的任务。</p>
     <table align="center" border=1 cellpadding=3 cellspacing=0>
-    <tr> <th>类别</th> <th>词语</th> </tr>
-    <tr> <td>&emsp;${iat_temp.attribA.label}&emsp;</td> <td>&emsp;${iat_temp.attribA.items.join('、')}&emsp;</td> </tr>
-    <tr> <td>&emsp;${iat_temp.attribB.label}&emsp;</td> <td>&emsp;${iat_temp.attribB.items.join('、')}&emsp;</td> </tr>
-    <tr> <td>&emsp;${iat_temp.targetA.label}&emsp;</td> <td>&emsp;${iat_temp.targetA.items.join('、')}&emsp;</td> </tr>
-    <tr> <td>&emsp;${iat_temp.targetB.label}&emsp;</td> <td>&emsp;${iat_temp.targetB.items.join('、')}&emsp;</td> </tr>
+    <tr> <th style='width:10%'>类别</th> <th>图片或词语</th> </tr>
+    <tr> <td>${iat_temp.attribA.label}</td> <td>${iat_temp.attribA.items.join('')};</td> </tr>
+    <tr> <td>${iat_temp.attribB.label}</td> <td>${iat_temp.attribB.items.join('')};</td> </tr>
+    <tr> <td>${iat_temp.targetA.label}</td> <td>${iat_temp.targetA.items.join('、')};</td> </tr>
+    <tr> <td>${iat_temp.targetB.label}</td> <td>${iat_temp.targetB.items.join('、')};</td> </tr>
     </table><br/>`,
     choices: ['<span id="timer">10</span>秒后继续'],
     button_html: btn_html_timer,
@@ -209,8 +225,8 @@ var IAT_instr1 = {
     type: 'html-keyboard-response',
     stimulus: `
     <div class="tag-bottom"><p>
-    —— 任务1：对“${iat.attribA.label}”词和“${iat.attribB.label}”词分类 ——<br/>
-    不同词语会出现在屏幕中央，类别标签将始终显示在屏幕上方<br/>
+    —— 任务1：对“${iat.attribA.label}”和“${iat.attribB.label}”这两类图片分类 ——<br/>
+    不同图片会出现在屏幕中央，类别标签将始终显示在屏幕上方<br/>
     <span style="color:#FFD866"><b>请根据上方标签的提示，尽可能正确并且快速地做出按键反应</b></span><br/>
     当按键错误时屏幕中会出现<span style="color:red"> X </span>，需要按另一个键纠正才能继续<br/><br/>
     请把双手食指分别放在键盘的“${key_L.toUpperCase()}”键和“${key_R.toUpperCase()}”键上<br/>
@@ -239,8 +255,8 @@ var IAT_instr3 = {
     type: 'html-keyboard-response',
     stimulus: `
     <div class="tag-bottom"><p>
-    —— 任务3：对“${iat.attribA.label}/${iat.targetA.label}”词和“${iat.attribB.label}/${iat.targetB.label}”词分类 ——<br/>
-    <span style="color:#78DCE8"><b>注意上方，之前的四类词语将混合在一起交替呈现</b></span><br/>
+    —— 任务3：对“${iat.attribA.label}/${iat.targetA.label}”和“${iat.attribB.label}/${iat.targetB.label}”图片或词语分类 ——<br/>
+    <span style="color:#78DCE8"><b>注意上方，之前的图片或词语将混合在一起交替呈现</b></span><br/>
     <span style="color:#FFD866"><b>请根据上方标签的提示，尽可能正确并且快速地做出按键反应</b></span><br/>
     当按键错误时屏幕中会出现<span style="color:red"> X </span>，需要按另一个键纠正才能继续<br/><br/>
     请把双手食指分别放在键盘的“${key_L.toUpperCase()}”键和“${key_R.toUpperCase()}”键上<br/>
@@ -254,8 +270,8 @@ var IAT_instr4 = {
     type: 'html-keyboard-response',
     stimulus: `
     <div class="tag-bottom"><p>
-    —— 任务4：对“${iat.attribA.label}/${iat.targetA.label}”词和“${iat.attribB.label}/${iat.targetB.label}”词分类 ——<br/>
-    <span style="color:#78DCE8"><b>与刚才的任务完全相同，请再次对这四类词语分类</b></span><br/>
+    —— 任务4：对“${iat.attribA.label}/${iat.targetA.label}”和“${iat.attribB.label}/${iat.targetB.label}”图片或词语分类 ——<br/>
+    <span style="color:#78DCE8"><b>与刚才的任务完全相同，请再次对图片或词语分类</b></span><br/>
     <span style="color:#FFD866"><b>请根据上方标签的提示，尽可能正确并且快速地做出按键反应</b></span><br/>
     当按键错误时屏幕中会出现<span style="color:red"> X </span>，需要按另一个键纠正才能继续<br/><br/>
     请把双手食指分别放在键盘的“${key_L.toUpperCase()}”键和“${key_R.toUpperCase()}”键上<br/>
@@ -284,8 +300,8 @@ var IAT_instr6 = {
     type: 'html-keyboard-response',
     stimulus: `
     <div class="tag-bottom"><p>
-    —— 任务6：对“${iat.attribA.label}/${iat.targetB.label}”词和“${iat.attribB.label}/${iat.targetA.label}”词分类 ——<br/>
-    <span style="color:#FF6188"><b>注意上方，四类词语将以新的组合方式交替呈现！</b></span><br/>
+    —— 任务6：对“${iat.attribA.label}/${iat.targetB.label}”和“${iat.attribB.label}/${iat.targetA.label}”图片或词语分类 ——<br/>
+    <span style="color:#FF6188"><b>注意上方，之前的图片或词语将混合在一起交替呈现！</b></span><br/>
     <span style="color:#FFD866"><b>请根据上方标签的提示，尽可能正确并且快速地做出按键反应</b></span><br/>
     当按键错误时屏幕中会出现<span style="color:red"> X </span>，需要按另一个键纠正才能继续<br/><br/>
     请把双手食指分别放在键盘的“${key_L.toUpperCase()}”键和“${key_R.toUpperCase()}”键上<br/>
@@ -299,8 +315,8 @@ var IAT_instr7 = {
     type: 'html-keyboard-response',
     stimulus: `
     <div class="tag-bottom"><p>
-    —— 任务7：对“${iat.attribA.label}/${iat.targetB.label}”词和“${iat.attribB.label}/${iat.targetA.label}”词分类 ——<br/>
-    <span style="color:#FF6188"><b>与刚才的任务完全相同，请再次对这四类词语分类</b></span><br/>
+    —— 任务7：对“${iat.attribA.label}/${iat.targetB.label}”和“${iat.attribB.label}/${iat.targetA.label}”图片或词语分类 ——<br/>
+    <span style="color:#FF6188"><b>与刚才的任务完全相同，请再次对图片或词语分类</b></span><br/>
     <span style="color:#FFD866"><b>请根据上方标签的提示，尽可能正确并且快速地做出按键反应</b></span><br/>
     当按键错误时屏幕中会出现<span style="color:red"> X </span>，需要按另一个键纠正才能继续<br/><br/>
     请把双手食指分别放在键盘的“${key_L.toUpperCase()}”键和“${key_R.toUpperCase()}”键上<br/>
@@ -384,7 +400,7 @@ var IAT1 = blockTemplateIAT(
     stimuli = generateRandomTrials(20, [].concat(iat.attribA.items, iat.attribB.items)),
     stim_func = function() {
         var stim = jsPsych.timelineVariable('s', true)
-        return `<p style="color:${attrib_color}">${stim}</p>`
+        return `<p style="color:${attrib_color};margin-top:40%">${stim}</p>`
     },
     key_answer_func = function() {
         var stim = jsPsych.timelineVariable('s', true)
@@ -418,7 +434,8 @@ var IAT3 = blockTemplateIAT(
     stim_func = function() {
         var stim = jsPsych.timelineVariable('s', true)
         if ([].concat(iat.attribA.items, iat.attribB.items).includes(stim)) {
-            return `<p style="color:${attrib_color}">${stim}</p>`
+           
+            return `<p style="color:${attrib_color}"><div style='padding-top:50%'>${stim}</div></p>`
         }
         if ([].concat(iat.targetA.items, iat.targetB.items).includes(stim)) {
             return `<p style="color:${target_color}">${stim}</p>`
@@ -441,7 +458,7 @@ var IAT4 = blockTemplateIAT(
     stim_func = function() {
         var stim = jsPsych.timelineVariable('s', true)
         if ([].concat(iat.attribA.items, iat.attribB.items).includes(stim)) {
-            return `<p style="color:${attrib_color}">${stim}</p>`
+            return `<p style="color:${attrib_color}"><div style='padding-top:50%'>${stim}</div></p>`
         }
         if ([].concat(iat.targetA.items, iat.targetB.items).includes(stim)) {
             return `<p style="color:${target_color}">${stim}</p>`
@@ -479,7 +496,7 @@ var IAT6 = blockTemplateIAT(
     stim_func = function() {
         var stim = jsPsych.timelineVariable('s', true)
         if ([].concat(iat.attribA.items, iat.attribB.items).includes(stim)) {
-            return `<p style="color:${attrib_color}">${stim}</p>`
+            return `<p style="color:${attrib_color}"><div style='padding-top:50%'>${stim}</div></p>`
         }
         if ([].concat(iat.targetB.items, iat.targetA.items).includes(stim)) {
             return `<p style="color:${target_color}">${stim}</p>`
@@ -502,7 +519,7 @@ var IAT7 = blockTemplateIAT(
     stim_func = function() {
         var stim = jsPsych.timelineVariable('s', true)
         if ([].concat(iat.attribA.items, iat.attribB.items).includes(stim)) {
-            return `<p style="color:${attrib_color}">${stim}</p>`
+            return `<p style="color:${attrib_color}"><div style='padding-top:50%'>${stim}</div></p>`
         }
         if ([].concat(iat.targetB.items, iat.targetA.items).includes(stim)) {
             return `<p style="color:${target_color}">${stim}</p>`
