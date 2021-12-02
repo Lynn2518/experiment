@@ -211,10 +211,10 @@ var IAT_instr0 = {
     请先熟悉这些图片或词语，这有利于你完成接下来的任务。</p>
     <table align="center" border=1 cellpadding=3 cellspacing=0>
     <tr> <th style='width:10%'>类别</th> <th>图片或词语</th> </tr>
-    <tr> <td>${iat_temp.attribA.label}</td> <td>${iat_temp.attribA.items.join('')};</td> </tr>
-    <tr> <td>${iat_temp.attribB.label}</td> <td>${iat_temp.attribB.items.join('')};</td> </tr>
-    <tr> <td>${iat_temp.targetA.label}</td> <td>${iat_temp.targetA.items.join('、')};</td> </tr>
-    <tr> <td>${iat_temp.targetB.label}</td> <td>${iat_temp.targetB.items.join('、')};</td> </tr>
+    <tr> <td>${iat_temp.attribA.label}</td> <td>${iat_temp.attribA.items.join('')}</td> </tr>
+    <tr> <td>${iat_temp.attribB.label}</td> <td>${iat_temp.attribB.items.join('')}</td> </tr>
+    <tr> <td>${iat_temp.targetA.label}</td> <td>${iat_temp.targetA.items.join('、')}</td> </tr>
+    <tr> <td>${iat_temp.targetB.label}</td> <td>${iat_temp.targetB.items.join('、')}</td> </tr>
     </table><br/>`,
     choices: ['<span id="timer">10</span>秒后继续'],
     button_html: btn_html_timer,
